@@ -32,7 +32,7 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.shared.dependency.graph.DependencyGraphBuilder;
 
-@Mojo(name = SetPropertyMojo.MOJO_NAME, defaultPhase = LifecyclePhase.INITIALIZE)
+@Mojo(name = SetPropertyMojo.MOJO_NAME, defaultPhase = LifecyclePhase.INITIALIZE, threadSafe = true)
 public class SetPropertyMojo extends AbstractMojo {
 	static final String MOJO_NAME = "set-property";
 	private static final String LOG_PREFIX = MOJO_NAME + " mojo: ";
