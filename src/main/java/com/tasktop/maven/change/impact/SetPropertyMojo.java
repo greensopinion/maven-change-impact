@@ -43,7 +43,7 @@ public class SetPropertyMojo extends AbstractMojo {
 	@Parameter(defaultValue = "${session}", readonly = true, required = true)
 	private MavenSession session;
 
-	@Parameter(name = "property-name", defaultValue = "affected-by-change")
+	@Parameter(name = "property-name", defaultValue = "maven.test.skip")
 	private String propertyName;
 
 	@Parameter(name = "true-value", defaultValue = "false")
@@ -55,7 +55,14 @@ public class SetPropertyMojo extends AbstractMojo {
 	@Component(hint = "default")
 	private DependencyGraphBuilder dependencyGraphBuilder;
 
+	@Parameter(name = "skip", defaultValue = "true")
+	private boolean skip;
+
 	public void execute() throws MojoExecutionException {
+		if (skip) {
+			logSkipped();
+			return;
+		}
 		Set<File> transitiveFolders = new MavenDependencyService(session, dependencyGraphBuilder)
 				.computeTransitiveDependencyFolders(project);
 		GitIntrospector gitIntrospector = GitIntrospector.create(project.getBasedir());
@@ -74,6 +81,10 @@ public class SetPropertyMojo extends AbstractMojo {
 			logUnaffected();
 			setProperty(falseValue);
 		}
+	}
+
+	private void logSkipped() {
+		getLog().info("Skipping due to configuration");
 	}
 
 	private void setProperty(String value) {

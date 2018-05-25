@@ -32,7 +32,7 @@ Install the plug-in in your local Maven repository, then add this to the root po
               <goal>set-property</goal>
             </goals>
             <configuration>
-              <property-name>maven.test.skip</property-name>
+              <skip>false</skip>
             </configuration>
           </execution>
         </executions>
@@ -41,7 +41,13 @@ Install the plug-in in your local Maven repository, then add this to the root po
   </build>
 ```
 
-This assumes that your maven-surefire-plugin has the following: ```<skip>${maven.test.skip}</skip>```
+Properties:
+* `<skip>` - defaults to `true`, must be set to `false` for this plug-in to have any effect
+* `<property-name>` - defaults to `maven.test.skip`, defines the name of the property to set
+* `<true-value>` - the value to set the property to if the latest Git commit affects the current project or one of it's transitive dependencies, defaults to `false`
+* `<false-value>` - the value to set the property to if the latest Git commit _does not_ affect the current project or one of it's transitive dependencies, defaults to `true`  
+
+This assumes that your maven-surefire-plugin has the following: `<skip>${maven.test.skip}</skip>`
 
 Running
 -------
