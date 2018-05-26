@@ -24,7 +24,7 @@ Install the plug-in in your local Maven repository, then add this to the root po
       <plugin>
         <groupId>com.tasktop.maven</groupId>
         <artifactId>change-impact</artifactId>
-        <version>0.0.2-SNAPSHOT</version>
+        <version>0.0.2</version>
         <executions>
           <execution>
             <phase>initialize</phase>
