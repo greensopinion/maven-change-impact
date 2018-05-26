@@ -66,6 +66,26 @@ Status
 
 This is a proof-of-concept.
 
+
+How To Release
+--------------
+
+From the command-line:
+
+````
+mvn -Possrh -Psign -DpushChanges=false -DlocalCheckout=true -Darguments=-Dgpg.passphrase=thesecret release:clean release:prepare
+mvn -Possrh -Psign -DpushChanges=false -DlocalCheckout=true -Darguments=-Dgpg.passphrase=thesecret release:perform
+````
+
+Then push changes:
+
+````
+git push
+````
+
+Search for the staging repository, close and relase it: https://oss.sonatype.org/#stagingRepositories
+
+
 License
 =======
 
