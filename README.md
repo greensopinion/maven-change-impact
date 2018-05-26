@@ -70,9 +70,9 @@ Build status on Travis CI: [![Build Status](https://travis-ci.org/greensopinion/
 
 
 How To Release
---------------
+==============
 
-From the command-line:
+To release this plug-in to Maven Central, from the command-line:
 
 ````
 mvn -Possrh -Psign -DpushChanges=false -DlocalCheckout=true -Darguments=-Dgpg.passphrase=thesecret release:clean release:prepare
