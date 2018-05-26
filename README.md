@@ -66,6 +66,8 @@ Status
 
 This is a proof-of-concept.
 
+Build status on Travis CI: [![Build Status](https://travis-ci.org/greensopinion/maven-change-impact.svg?branch=master)](https://travis-ci.org/greensopinion/maven-change-impact)
+
 
 How To Release
 --------------
