@@ -1,10 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.tasktop.maven</groupId>
 	<artifactId>change-impact</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.2</version>
 	<packaging>maven-plugin</packaging>
 
 	<name>change.impact Maven Plugin</name>
@@ -197,7 +196,7 @@
         <developerConnection>${scm.developerConnection}</developerConnection>
         <connection>scm:git://git@github.com:greensopinion/maven-change-impact.git</connection>
         <url>https://github.com/greensopinion/maven-change-impact.git</url>
-        <tag>HEAD</tag>
+        <tag>change-impact-0.0.2</tag>
     </scm>
     <developers>
         <developer>
