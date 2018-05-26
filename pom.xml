@@ -3,7 +3,7 @@
 
 	<groupId>com.tasktop.maven</groupId>
 	<artifactId>change-impact</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<packaging>maven-plugin</packaging>
 
 	<name>change.impact Maven Plugin</name>
@@ -196,7 +196,7 @@
         <developerConnection>${scm.developerConnection}</developerConnection>
         <connection>scm:git://git@github.com:greensopinion/maven-change-impact.git</connection>
         <url>https://github.com/greensopinion/maven-change-impact.git</url>
-        <tag>change-impact-0.0.2</tag>
+        <tag>HEAD</tag>
     </scm>
     <developers>
         <developer>
