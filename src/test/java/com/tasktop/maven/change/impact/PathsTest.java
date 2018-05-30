@@ -17,8 +17,9 @@ package com.tasktop.maven.change.impact;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.io.File;
+import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.Test;
@@ -37,7 +38,16 @@ public class PathsTest {
 		assertThat(paths.toRelativePaths(createPath("a-path"))).containsExactly(createPath("file.txt"));
 	}
 
+	@Test
+	public void parentAnyOf() {
+		Paths paths = new Paths(Arrays.asList(createPath("a-path/file.txt"), createPath("another-path")));
+		assertThat(paths.parentAnyOf(Arrays.asList(createPath("another-path")))).isTrue();
+		assertThat(paths.parentAnyOf(Arrays.asList(createPath("another-path/with/child.txt")))).isTrue();
+		assertThat(paths.parentAnyOf(Arrays.asList(createPath("a-path")))).isFalse();
+		assertThat(paths.parentAnyOf(Arrays.asList(createPath("yet-another-path")))).isFalse();
+	}
+
 	private Path createPath(String path) {
-		return new File(path).toPath();
+		return FileSystems.getDefault().getPath(path);
 	}
 }

@@ -18,6 +18,7 @@ package com.tasktop.maven.change.impact;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -26,7 +27,7 @@ class Paths {
 
 	private Set<Path> referencePaths;
 
-	public Paths(Set<Path> referencePaths) {
+	public Paths(Collection<Path> referencePaths) {
 		this.referencePaths = new HashSet<>(requireNonNull(referencePaths));
 	}
 
@@ -34,7 +35,7 @@ class Paths {
 		return referencePaths.stream().map(f -> referencePath.relativize(f)).collect(Collectors.toSet());
 	}
 
-	public boolean parentAnyOf(Set<Path> candidates) {
+	public boolean parentAnyOf(Collection<Path> candidates) {
 		return candidates.stream().anyMatch(this::parents);
 	}
 
