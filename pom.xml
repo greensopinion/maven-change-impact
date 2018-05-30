@@ -105,6 +105,27 @@
 	<build>
 		<plugins>
 			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<phase>process-test-resources</phase>
+						<id>extract-git-repo</id>
+						<configuration>
+							<tasks>
+								<delete dir="${project.build.directory}/git-repo" failonerror="false"/>
+								<unzip
+									src="${project.basedir}/src/test/resources/git-repo.zip"
+									dest="${project.build.directory}"/>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.7.0</version>
@@ -118,7 +139,7 @@
 				<artifactId>maven-plugin-plugin</artifactId>
 				<version>3.5</version>
 				<configuration>
-					<goalPrefix>change.impact</goalPrefix>
+					<goalPrefix>change-impact</goalPrefix>
 					<skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
 				</configuration>
 				<executions>

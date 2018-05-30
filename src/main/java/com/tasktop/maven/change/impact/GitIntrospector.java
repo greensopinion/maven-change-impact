@@ -100,7 +100,7 @@ class GitIntrospector {
 	}
 
 	private void addPath(Set<Path> paths, String path) {
-		if (path != null) {
+		if (path != null && !path.equals("/dev/null")) {
 			paths.add(FileSystems.getDefault().getPath(path));
 		}
 	}
