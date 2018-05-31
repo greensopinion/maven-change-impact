@@ -21,6 +21,8 @@ import static java.util.stream.Collectors.toSet;
 import java.io.File;
 import java.nio.file.Path;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
@@ -63,11 +65,10 @@ public class SetPropertyMojo extends AbstractMojo {
 			logSkipped();
 			return;
 		}
-		Set<File> transitiveFolders = new MavenDependencyService(session, dependencyGraphBuilder)
-				.computeTransitiveDependencyFolders(project);
+		Set<File> filesAndFolders = computeMavenFilesOfInterest();
 		GitIntrospector gitIntrospector = GitIntrospector.create(project.getBasedir());
 		File workTree = gitIntrospector.getRepository().getWorkTree();
-		Set<Path> dependencyPaths = new Paths(transitiveFolders.stream().map(f -> f.toPath()).collect(toSet()))
+		Set<Path> dependencyPaths = new Paths(filesAndFolders.stream().map(f -> f.toPath()).collect(toSet()))
 				.toRelativePaths(workTree.toPath());
 		Set<Path> changedPaths = gitIntrospector.computeAffectedPathsOfLastCommit();
 
@@ -81,6 +82,13 @@ public class SetPropertyMojo extends AbstractMojo {
 			logUnaffected();
 			setProperty(falseValue);
 		}
+	}
+
+	private Set<File> computeMavenFilesOfInterest() throws MojoExecutionException {
+		MavenDependencyService mavenDependencyService = new MavenDependencyService(session, dependencyGraphBuilder);
+		Set<File> transitiveFolders = mavenDependencyService.computeTransitiveDependencyFolders(project);
+		Set<File> transitiveHierarchy = mavenDependencyService.computeTransitiveHierarchyFiles(project);
+		return Stream.concat(transitiveFolders.stream(), transitiveHierarchy.stream()).collect(Collectors.toSet());
 	}
 
 	private void logSkipped() {

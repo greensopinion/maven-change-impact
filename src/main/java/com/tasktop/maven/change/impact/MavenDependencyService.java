@@ -18,6 +18,7 @@ package com.tasktop.maven.change.impact;
 import static java.util.Objects.requireNonNull;
 
 import java.io.File;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -41,6 +42,19 @@ class MavenDependencyService {
 	public MavenDependencyService(MavenSession session, DependencyGraphBuilder graphBuilder) {
 		this.session = requireNonNull(session);
 		this.graphBuilder = requireNonNull(graphBuilder);
+	}
+
+	public Set<File> computeTransitiveHierarchyFiles(MavenProject project) throws MojoExecutionException {
+		Set<File> files = new HashSet<>();
+		MavenProject ancestor = project.getParent();
+		while (ancestor != null) {
+			File file = ancestor.getFile();
+			if (file != null) {
+				files.add(file);
+			}
+			ancestor = ancestor.getParent();
+		}
+		return files;
 	}
 
 	public Set<File> computeTransitiveDependencyFolders(MavenProject project) throws MojoExecutionException {
