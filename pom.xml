@@ -1,10 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.tasktop.maven</groupId>
 	<artifactId>change-impact</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.3</version>
 	<packaging>maven-plugin</packaging>
 
 	<name>change.impact Maven Plugin</name>
@@ -157,14 +156,10 @@
 						<id>extract-git-repo</id>
 						<configuration>
 							<tasks>
-								<delete dir="${project.build.directory}/git-repo"
-									failonerror="false" />
-								<delete dir="${project.basedir}/src/it/simple-it/git-repo-with-nested-projects"
-									failonerror="false" />
-								<unzip src="${project.basedir}/src/test/resources/git-repo.zip"
-									dest="${project.build.directory}" />
-								<unzip src="${project.basedir}/src/test/resources/git-repo-with-nested-projects.zip"
-									dest="${project.basedir}/src/it/simple-it" />
+								<delete dir="${project.build.directory}/git-repo" failonerror="false" />
+								<delete dir="${project.basedir}/src/it/simple-it/git-repo-with-nested-projects" failonerror="false" />
+								<unzip src="${project.basedir}/src/test/resources/git-repo.zip" dest="${project.build.directory}" />
+								<unzip src="${project.basedir}/src/test/resources/git-repo-with-nested-projects.zip" dest="${project.basedir}/src/it/simple-it" />
 							</tasks>
 						</configuration>
 						<goals>
@@ -265,7 +260,7 @@
 		<developerConnection>${scm.developerConnection}</developerConnection>
 		<connection>scm:git://git@github.com:greensopinion/maven-change-impact.git</connection>
 		<url>https://github.com/greensopinion/maven-change-impact.git</url>
-		<tag>HEAD</tag>
+		<tag>change-impact-0.0.3</tag>
 	</scm>
 	<developers>
 		<developer>
