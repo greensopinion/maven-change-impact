@@ -1,7 +1,7 @@
 What Is This?
 =============
 
-A Maven plug-in that conditionally sets a property based on whether the latest Git commit affects any files in the transitive dependency chain of the current project.
+A Maven plug-in that conditionally sets a property based on whether the latest Git commit affects any files in the transitive dependency chain of the current project, or any poms in the pom hierarchy of the current project.
 
 How Is It Useful?
 -----------------
@@ -24,7 +24,7 @@ Install the plug-in in your local Maven repository, then add this to the root po
       <plugin>
         <groupId>com.tasktop.maven</groupId>
         <artifactId>change-impact</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
         <executions>
           <execution>
             <phase>initialize</phase>
